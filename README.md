@@ -15,7 +15,7 @@ To demonstrate how modern LLMs and vector search can be combined to solve real-w
 
 ## 🧠 How It Works
 
-- **Document Ingestion**: Loads structured recipe data from a CSV and enriches it with inferred dietary metadata.
+- **Document Ingestion**: Loads structured recipe data from a CSV and enriches it with inferred dietary metadata (Non-Vegetarian, Vegetarian, Vegan).
 - **Embedding & Indexing**: Embeds recipes using Sentence Transformers and stores them in a FAISS vector database.
 - **Retrieval-Augmented Generation**:
   - Retrieves top relevant recipes based on user input using semantic vector search
