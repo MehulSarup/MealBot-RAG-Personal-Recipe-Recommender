@@ -3,8 +3,16 @@ from langchain_openai import ChatOpenAI
 from recipes_vector_store import load_vector_store
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
+import os
+from dotenv import load_dotenv, find_dotenv
 
-csv_path = "C:/Users/mehul/Documents/Datasets/RAW_recipes.csv"
+# Fetch the LLM API Key
+_ = load_dotenv(find_dotenv()) # read local .env file
+llm_key = os.environ['OPEN_ROUTER']
+
+# Fetch the csv file path
+base_dir = os.path.dirname(__file__)
+csv_path = os.path.join(base_dir, "RAW_recipes.csv")
 
 custom_prompt = """
 You are Mealbot, an expert recipe assistant.
@@ -16,9 +24,9 @@ Chat History : {chat_history}
 chain_prompt = PromptTemplate.from_template(template=custom_prompt)
 
 llm = ChatOpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key="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",
-    model="deepseek/deepseek-r1-0528-qwen3-8b:free",
+    base_url = "https://openrouter.ai/api/v1",
+    api_key = llm_key,
+    model = "deepseek/deepseek-r1-0528-qwen3-8b:free",
     temperature=0.1,
 )
 
